@@ -1,4 +1,5 @@
-#Facturama SDK PHP
+# Facturama SDK PHP
+This library requires PHP 5.5 as minimum
 ## How do I install it?
 composer install javiertelioz/facturama-php-sdk:^1.0@dev
 ### Including the Lib
@@ -7,10 +8,10 @@ It includes the library to your project
 require __DIR__.'/vendor/autoload.php';
 ```
 Start the development!
-### Create an instance of Facturama\Api class
+### Create an instance of Facturama\Client class
 Example.
 ```php
-$facturama = new \Facturama\Api('USER', 'PASSWORD');
+$facturama = new \Facturama\Client('USER', 'PASSWORD');
 ```
 With this instance you can start working.
 At this stage your are ready to make call to the API on behalf of the user.
@@ -76,5 +77,5 @@ That is great! Just fork the project in github. Create a topic branch, write som
 
 Thanks for helping!
 
-##Contributing:
+## Contributing:
 [phansys](https://github.com/phansys/)

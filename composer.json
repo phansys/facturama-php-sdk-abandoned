@@ -1,24 +1,24 @@
 {
-    "name": "javiertelioz/facturama-php-sdk",
-    "description": "Facturama SDK PHP",
-    "keywords": ["PHP", "JSON", "Facturama"],
+    "name": "facturama/facturama-php",
+    "description": "Facturama PHP SDK",
+    "keywords": ["API", "PHP", "JSON", "Facturama"],
     "license": "MIT",
     "type": "library",
-    "homepage": "https://facturama.mx/",
+    "homepage": "https://www.api.facturama.com.mx/",
     "support": {
-        "issues": "https://github.com/javiertelioz/facturama-php-sdk/issues"
+        "issues": "https://github.com/Facturama/facturama-php/issues"
     },
     "authors": [
         {
-            "name": "Javier Telio",
-            "email": "jtelio118@gmail.com"
+            "name": "Facturama",
+            "email": "dev@facturama.com"
         }
     ],
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.5",
         "ext-curl": "*",
         "ext-openssl": "*",
-        "guzzlehttp/guzzle": "^5.3"
+        "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.7",
