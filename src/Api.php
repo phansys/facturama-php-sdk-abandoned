@@ -28,6 +28,8 @@ class Api
     const API_URL = 'https://www.api.facturama.com.mx/api';
     /**
      * Configuration for CURL
+     *
+     * @var array
      */
     protected $curl_opts = [
         CURLOPT_USERAGENT => 'FACTURAMA-PHP-SDK-1.0.0',
@@ -40,27 +42,27 @@ class Api
     /**
      * User Name
      *
-     * @var null
+     * @var string
      */
-    protected $user = null;
+    protected $user;
     /**
      * Password
      *
-     * @var null
+     * @var string
      */
-    protected $password = null;
+    protected $password;
 
     /**
      * Init configuration
      *
      * @param string $user     username
      * @param string $password password
-     * @param mixed $curl_opts curl options
+     * @param array $curl_opts curl options
      */
-    public function __construct($user = null, $password = null, $curl_opts = null)
+    public function __construct($user, $password, array $curl_opts = [])
     {
-        $this->user = $user ? $user : config('facturama.credentials.username');
-        $this->password = $password ? $password : config('facturama.credentials.password');
+        $this->user = $user;
+        $this->password = $password;
 
         $this->curl_opts = $curl_opts ? array_merge($this->curl_opts, $curl_opts) : $this->curl_opts;
     }
@@ -73,7 +75,7 @@ class Api
      *
      * @return mixed
      */
-    public function get($path, $params = null)
+    public function get($path, array $params = [])
     {
         $opts = [
             CURLOPT_HTTPHEADER => [
@@ -81,7 +83,7 @@ class Api
                 'Authorization: Basic '.$this->getCredentials(),
             ],
         ];
-        $exec = $this->execute($path, null, $params);
+        $exec = $this->execute($path, [], $params);
 
         return $exec;
     }
@@ -95,7 +97,7 @@ class Api
      *
      * @return mixed
      */
-    public function post($path, $body = null, $params = [])
+    public function post($path, array $body = [], array $params = [])
     {
         $body = json_encode($body);
         $opts = [
@@ -115,12 +117,12 @@ class Api
      * PUT Request
      *
      * @param  string $path
-     * @param  mixed $body
+     * @param  array $body
      * @param  array $params
      *
      * @return mixed
      */
-    public function put($path, $body = null, $params = null)
+    public function put($path, array $body = [], array $params = [])
     {
         $body = json_encode($body);
         $opts = [
@@ -141,11 +143,11 @@ class Api
      * DELETE Request
      *
      * @param  string $path
-     * @param  mixed $params
+     * @param  array $params
      *
      * @return mixed
      */
-    public function delete($path, $params = null)
+    public function delete($path, array $params = [])
     {
         $opts = [
             CURLOPT_HTTPHEADER => [
@@ -169,7 +171,7 @@ class Api
      *
      * @return mixed
      */
-    public function execute($path, $opts = [], $params = [])
+    public function execute($path, array $opts = [], array $params = [])
     {
         $uri = $this->make_path($path, $params);
         $ch = curl_init($uri);
@@ -200,7 +202,7 @@ class Api
      *
      * @return string
      */
-    public function make_path($path, $params = [])
+    public function make_path($path, array $params = [])
     {
         if (!preg_match('/^http/', $path)) {
             if (!preg_match("/^\//", $path)) {
