@@ -1,4 +1,4 @@
-#Facturama SDK PHP
+# Facturama SDK PHP
 ## How do I install it?
 composer install javiertelioz/facturama-php-sdk:^1.0@dev
 ### Including the Lib
@@ -76,5 +76,5 @@ That is great! Just fork the project in github. Create a topic branch, write som
 
 Thanks for helping!
 
-##Contributing:
+## Contributing:
 [phansys](https://github.com/phansys/)
